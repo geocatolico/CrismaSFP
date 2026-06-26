@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="LOGO/Logo-CrismaSímbolo-8.ico">
+    <title>Encontro de Crisma - A Igreja</title>
+    <style>
+        :root {
+            --bg-principal: #0f111a;
+            --bg-card: #161925;
+            --bg-interno: #1e2235;
+            --texto-claro: #f3f4f6;
+            --texto-mutado: #9ca3af;
+            --detalhe-neon: #ffca28;
+            --detalhe-neon-hover: #ffe082;
+            --biblia-cor: #4ade80;
+            --magisterio-cor: #60a5fa;
+            --catecismo-cor: #f43f5e;
+            --shadow-custom: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-principal);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--detalhe-neon);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: rgba(22, 25, 37, 0.95);
+            padding: 0 5%;
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--texto-claro);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--detalhe-neon);
+        }
+
+        nav {
+            display: flex;
+            gap: 5px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--texto-mutado);
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-btn:hover {
+            color: var(--texto-claro);
+        }
+
+        .tab-btn.active {
+            background-color: var(--detalhe-neon);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(255, 202, 40, 0.2);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 60px 5% 40px 5%;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255,202,40,0.03) 0%, rgba(15,17,26,0) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            color: var(--texto-mutado);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .badge-missao {
+            display: inline-block;
+            background-color: rgba(255, 202, 40, 0.1);
+            color: var(--detalhe-neon);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* --- Main Content Layout --- */
+        .container {
+            padding: 0 5% 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .secao-titulo {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--detalhe-neon);
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .grid-topicos {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* --- Cards & UI Elements --- */
+        .card-topico {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: var(--shadow-custom);
+        }
+
+        .card-topico h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--texto-claro);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- O Tripé da Fé (Fontes) --- */
+        .bloco-tripe {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .fonte-box {
+            padding: 22px;
+            border-radius: 12px;
+            background-color: rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            border-top: 4px solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .fonte-box strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fonte-box cite {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+            font-style: normal;
+        }
+
+        .fonte-box.biblia { border-top-color: var(--biblia-cor); }
+        .fonte-box.biblia strong { color: var(--biblia-cor); }
+
+        .fonte-box.magisterio { border-top-color: var(--magisterio-cor); }
+        .fonte-box.magisterio strong { color: var(--magisterio-cor); }
+
+        .fonte-box.catecismo { border-top-color: var(--catecismo-cor); }
+        .fonte-box.catecismo strong { color: var(--catecismo-cor); }
+
+        /* --- Explicação Simples & Listas --- */
+        .texto-bloco {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .texto-bloco h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: var(--detalhe-neon);
+        }
+
+        .texto-bloco p {
+            color: var(--texto-claro);
+            font-size: 1rem;
+        }
+
+        .lista-explicativa {
+            list-style: none;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-explicativa li {
+            padding-left: 20px;
+            position: relative;
+            color: var(--texto-mutado);
+        }
+
+        .lista-explicativa li::before {
+            content: "•";
+            color: var(--detalhe-neon);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .lista-explicativa strong {
+            color: var(--texto-claro);
+        }
+
+        /* --- Accordion (Estudo do Catequista) --- */
+        .accordion-item {
+            margin-top: 20px;
+            border-radius: 12px;
+            background-color: var(--bg-interno);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px;
+            text-align: left;
+            color: var(--texto-claro);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+            fill: var(--detalhe-neon);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-content .inner-pad {
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .subtopico-estudo h5 {
+            color: var(--detalhe-neon);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .subtopico-estudo p {
+            color: var(--texto-mutado);
+            font-size: 0.95rem;
+        }
+
+        /* --- Bloco de Fala com os Jovens --- */
+        .fala-crismando {
+            background: linear-gradient(135deg, rgba(255,202,40,0.04) 0%, rgba(255,202,40,0.01) 100%);
+            border-left: 4px solid var(--detalhe-neon);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .fala-crismando::before {
+            content: "“";
+            position: absolute;
+            font-size: 4rem;
+            color: rgba(255, 202, 40, 0.1);
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .fala-crismando span {
+            display: block;
+            font-weight: 800;
+            color: var(--detalhe-neon);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .fala-crismando p {
+            font-style: italic;
+            color: #e5e7eb;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Grid Estatístico de Caridade --- */
+        .grid-caridade {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--detalhe-neon);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-desc {
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+        }
+
+        /* --- CTA Links & Buttons --- */
+        .btn-vaticano {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--detalhe-neon);
+            color: #0f111a;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(255, 202, 40, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-vaticano:hover {
+            background-color: var(--detalhe-neon-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0a0b11;
+            text-align: center;
+            padding: 40px 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
+        }
+
+        footer p span {
+            color: var(--detalhe-neon);
+            font-weight: 600;
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 5%;
+                gap: 15px;
+            }
+            body { padding-top: 140px; }
+            .hero h1 { font-size: 2rem; }
+            .card-topico { padding: 25px; }
+            .bloco-tripe { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 600px) {
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .tab-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CRISMA<span>.A Igreja</span></div>
+        <nav role="tablist">
+            <button class="tab-btn active" role="tab" data-target="parte1">1. Origem & Identidade</button>
+            <button class="tab-btn" role="tab" data-target="parte2">2. Estrutura & Missão</button>
+            <button class="tab-btn" role="tab" data-target="parte3">3. Nosso Chamado</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="badge-missao">Encontro de Crisma: A Igreja</div>
+        <h1>A Igreja Católica Apostólica Romana</h1>
+        <p>Este material detalha a fundação divina da Igreja Católica Apostólica Romana por Jesus Cristo sobre Pedro, explicando sua identidade e estrutura hierárquica. Em seguida, apresenta seu funcionamento prático, os documentos do Magistério e sua atuação como a maior rede de caridade do planeta. Por fim, convoca o crismando a assumir seu papel como membro ativo e defensor maduro da fé na comunidade.</p>
+    </section>
+
+    <div class="container">
+
+        <div id="parte1" class="tab-content active" role="tabpanel">
+            <h2 class="secao-titulo"> Origem e Identidade</h2>
+            <div class="grid-topicos">
+                
+                <div class="card-topico">
+                    <h3>🔘 Tópico 1: A Origem da Igreja de Cristo</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "E eu te declaro: tu és Pedro, e sobre esta pedra edificarei a minha Igreja; as portas do inferno não prevalecerão contra ela. Eu te darei as chaves do Reino dos Céus..."
+                            <cite>Mateus 16, 18-19</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "O Pontífice Romano, por força do seu cargo de vigário de Cristo e pastor de toda a Igreja, tem nela pleno, supremo e universal poder, que pode sempre exercer livremente."
+                            <cite>Concílio Vaticano II, Lumen Gentium, n. 22</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "O Senhor fez de São Pedro o fundamento visível da sua Igreja. Entregou-lhe as chaves dela. O bispo da Igreja de Roma, successor de São Pedro, é o chefe do Colégio dos Bispos..."
+                            <cite>CIC n. 936</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>Jesus não nos deixou soltos no mundo. Ele escolheu um líder de confiança para os apóstolos e deu a ele uma autoridade espiritual real. Quando Jesus diz que Pedro é a "pedra", Ele está criando uma estrutura firme. O Papa atual é o successor direto de Pedro, carregando essa mesma missão de guiar e manter a Igreja unida até hoje.</p>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>A Questão Filológica (Aramaico vs. Grego)</h5>
+                                    <p>Críticos alegam que no texto grego há diferença entre Petros (pedra pequena) e petra (rocha). Porém, Jesus falava aramaico. No original, a palavra usada foi Kephas para ambas as ocorrências: "Tu és Kephas e sobre esta kephas...". Não há distinção de gênero ou tamanho no original aramaico.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>A Simbologia das Chaves e do "Ligar/Desligar"</h5>
+                                    <p>Faz alusão a Isaías 22, 22, onde o rei davídico entregava as chaves do palácio ao mestre-sala (vigário), delegando plenos poderes de governo em sua ausência. "Ligar e desligar" são termos jurídicos rabínicos para permitir, proibir e absolver.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>A Sucessão Apostólica</h5>
+                                    <p>A promessa de indefectibilidade exigia a transmissão do encargo (Cátedra). A sucessão histórica pós-Pedro seguiu de forma ininterrupta por São Lino, Santo Anacleto e São Clemente Romano. A Igreja não nasceu de arranjos com Constantino em 313 d.C., o império apenas legalizou o culto católico clandestino.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Galera, imaginem que vocês vão abrir uma empresa ou criar um time gigante que precisa durar milhares de anos. Qual a primeira coisa que vocês fazem? Escolhem um líder de confiança e criam uma base sólida, certo? Jesus fez exatamente isso. Ele olhou para Simão, mudou o nome dele para Pedro — que significa Pedra — e disse: 'É em cima de você que eu vou construir a minha Igreja'. Jesus não deixou um livro escrito e sumiu; Ele deixou uma comunidade viva com um líder visível. E o mais louco: governos caem, impérios somem, mas a Igreja Católica está de pé há mais de 2000 anos porque a promessa de Jesus não falha: as forças do mal nunca vão derrubá-la!"</p>
+                    </div>
+                </div>
+
+                <div class="card-topico">
+                    <h3>🔘 Tópico 2: O Nome da Igreja (Católica Apostólica Romana)</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Ide, portanto, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo."
+                            <cite>Mateus 28, 19</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "Onde está Cristo Jesus, está a Igreja Católica."
+                            <cite>Santo Inácio de Antioquia, Ano 107 d.C.</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "A Igreja é católica: anuncia a totalidade da fé; conserva e administra a plenitude dos meios de salvação; é enviada a todos os povos; dirige-se a todos os homens..."
+                            <cite>CIC n. 868</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>O nome da nossa Igreja resume nossa história:</p>
+                        <ul class="lista-explicativa">
+                            <li><strong>Católica:</strong> Significa "universal", pois foi feita para levar a salvação para todas as culturas de todos os tempos.</li>
+                            <li><strong>Apostólica:</strong> Porque mantém vivos exatamente as mesmas doutrinas e a mesma autoridade dada aos 12 Apóstolos.</li>
+                            <li><strong>Romana:</strong> Porque a sede visível fica em Roma, local de martírio e sepultamento de São Pedro e São Paulo.</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Catolicidade Intrínseca e Extrínseca</h5>
+                                    <p>Derivado de Katholikos (universal). A Igreja já nasce Católica em Pentecostes antes de se expandir. É intrínseca porque possui a totalidade dos meios e verdades depositadas por Cristo, e extrínseca porque se destina geograficamente a todos os povos.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>A Apostolicidade Tripla</h5>
+                                    <p>Apostólica na Origem (fundada nas testemunhas), no Ensinamento (guarda e transmite o Depósito da Fé) e na Estrutura (dirigida e santificada pela Sucessão Apostólica dos Bispos).</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>O Primado Romano e Ritos</h5>
+                                    <p>Roma não limita geograficamente a Igreja, mas marca a Cátedra Petrina pelo martírio sob Nero. A catolicidade abarca também as 23 Igrejas Católicas Orientais de rito diferente (ex: Maronita, Melquita), que mantém total comunhão espiritual e jurídica com o Papa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Vocês já pararam para pensar no nome completo da Igreja? Não é só 'Igreja Católica'. O nome oficial é Igreja Católica Apostólica Romana. E isso não é por acaso. Católica significa 'universal', ou seja, ela é para todo mundo, em qualquer lugar do planeta e da história. Se você for para o Japão ou para a África, a missa é a mesma! Apostólica significa que a nossa fé veio dos Apóstolos; nós não inventamos nada novo, nós guardamos o que os amigos de Jesus guardavam. E Romana porque a nossa sede fica em Roma, a cidade onde São Pedro deu a vida por Cristo. É um nome que carrega história, sangue de mártires e uma missão que abraça o mundo inteiro!"</p>
+                    </div>
+                </div>
+
+                <div class="card-topico">
+                    <h3>🔘 Tópico 3: As Notas da Igreja Una, Santa, Católica e Apostólica</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Há um só Corpo e um só Espírito, como também é uma só a esperança à qual fostes chamados. Há um só Senhor, uma só fé, um só batismo."
+                            <cite>Efésios 4, 4-5</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "Esta é a única Igreja de Cristo, que no Credo professamos ser una, santa, católica e apostólica, e que o nosso Salvador, depois da sua ressurreição, entregou a Pedro..."
+                            <cite>Lumen Gentium, n. 8</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "Estas quatro características, inseparavelmente ligadas entre si, indicam traços essenciais da Igreja e da sua missão. A Igreja não as tem de si mesma; é Cristo que as dá..."
+                            <cite>CIC n. 811</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>As quatro notas funcionam como os elementos de identificação da Igreja de Cristo: ela é <strong>Una</strong> na verdade de fé; <strong>Santa</strong> devido à sua união com Deus, que a santifica; <strong>Católica</strong> por seu alcance irrestrito; e <strong>Apostólica</strong> por suas raízes históricas nos Apóstolos.</p>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Vínculos da Unidade</h5>
+                                    <p>A unidade provém da Trindade e manifesta-se visivelmente em três elos externos: a profissão de uma única fé (dogmas), a celebração litúrgica comum dos 7 Sacramentos e a liderança do governo eclesiástico sob a autoridade visível do Papa.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>Santidade Objetiva vs. Membros Pecadores</h5>
+                                    <p>Doutrina fundamental para sanar o questionamento juvenil. A Igreja é indissociavelmente Santa em sua origem, sacramentos e doutrina por ser a Esposa de Cristo. Todavia, seus membros terrenos são pecadores em processo de purificação. O pecado dos fiéis turva a imagem externa da Igreja, mas não corrompe sua essência santa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Galera, se alguém chegar para você e falar: 'Ah, eu fundei uma igreja ali na esquina', como você sabe se aquela é a Igreja que Jesus pensou? A Igreja de Jesus tem quatro 'marcas registradas' que a gente reza no Credo: Ela é Una, porque Jesus só tem um corpo, não faz sentido ter milhares de divisões na fé. Ela é Santa, e aqui vem o segredo: a Igreja é santa por causa de Deus, não por causa da gente que erra e peca. Ela nos limpa do pecado! Ela é Católica porque acolhe todo mundo e tem toda a verdade. E é Apostólica porque o nosso Bispo hoje foi ordenado por um Bispo que veio de outro Bispo, numa linha direta até chegar em um dos 12 Apóstolos. É a assinatura de Deus no mundo!"</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="parte2" class="tab-content" role="tabpanel">
+            <h2 class="secao-titulo"> Estrutura e Comunicação da Igreja</h2>
+            <div class="grid-topicos">
+                
+                <div class="card-topico">
+                    <h3>🔘 Tópico 1: Hierarquia da Igreja e Graus de Responsabilidade</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "E ele mesmo estabeleceu uns como apóstolos, outros como profetas... para o aperfeiçoamento dos santos, para a obra do ministério, para a edificação do corpo de Cristo."
+                            <cite>Efésios 4, 11-12</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "Por instituição divina, os Bispos sucederam aos Apóstolos como pastores da Igreja; quem os ouve, ouve a Cristo, e quem os despreza, despreza a Cristo..."
+                            <cite>Lumen Gentium, n. 20</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "Para alimentar e fazer crescer continuamente o Povo de Deus, Cristo Senhor instituiu na sua Igreja uma variedade de ministérios que tendem ao bem de todo o Corpo."
+                            <cite>CIC n. 874</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>A estrutura de organização da Igreja foi pensada por Jesus para cuidar e guiar os fiéis com segurança:</p>
+                        <ul class="lista-explicativa">
+                            <li><strong>Diáconos, Padres e Bispos:</strong> Formam os três graus reais sacramentais de ordenação e serviço.</li>
+                            <li><strong>Arcebispos, Cardeais e o Papa:</strong> São títulos organizacionais e administrativos de condução global.</li>
+                            <li><strong>Os Leigos:</strong> São a grande força viva da Igreja com a missão de evangelizar os ambientes civis e profissionais.</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Os Três Graus Sacramentais da Ordem</h5>
+                                    <p>1. Diáconos: Consagrados ao serviço e à caridade; auxiliam o altar, batizam e assistem matrimônios. Podem ser permanentes (homens casados).<br>
+                                       2. Presbíteros: Colaboradores do Bispo; agem In Persona Christi para consagrar a Eucaristia e conferir a confissão.<br>
+                                       3. Bispos: Sucessores plenos dos Apóstolos, detentores do múnus de guiar uma Diocese.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>Títulos Honoríficos e Funcionais</h5>
+                                    <p>O Arcebispado aponta o governo de uma Arquidiocese central. Cardeais são indicados pelo Papa para compor o Colégio que assessora a Santa Sé e vota no Conclave. O Papa detém o Primado Petrino de jurisdição ordinária suprema e universal.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>Eclesiologia do Laicato</h5>
+                                    <p>O leigo não possui menor valor hierárquico, sua vocação própria — ressaltada pelo Concílio Vaticano II — consiste na consagração e ordenação reta das estruturas seculares e temporais (política, cultura, finanças).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Galera, imaginem o corpo humano. O olho é mais importante que o coração? O pé é menos importante que a mão? Se o pé parar de andar, o corpo não sai do lugar. Na Igreja é igual. Jesus criou uma organização para as coisas funcionarem. Nós, que estamos aqui, somos os Leigos — nossa missão é levar Deus para as escolas, faculdades e trabalhos. Para nos ajudar a receber os sacramentos, existem os Diáconos e os Padres. Quem cuida de todas as paróquias de uma região (Diocese) é o Bispo. Os Cardeais são os conselheiros mais próximos, aqueles que se reúnem para escolher o próximo Papa quando um morre ou renuncia. E o Papa é o grande coordenador, o pastor que Jesus deixou para manter todo mundo unido. Não é sobre quem manda mais, é sobre quem serve mais. Se o Papa reza e se sacrifica pela Igreja, ele é o que mais serve!"</p>
+                    </div>
+                </div>
+
+                <div class="card-topico">
+                    <h3>🔘 Tópico 2: Os Lugares da Igreja (Estruturas Físicas e Territoriais)</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Zelo por tua casa me consome."
+                            <cite>João 2, 17</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "As igrejas, edifícios sagrados destinados ao culto divino, devem ser belas, adequadas para a oração e para as celebrações sagradas..."
+                            <cite>Ordenamento Geral do Missal Romano, n. 288</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "Estes edifícios visíveis não são simples lugares de reunião, mas significam e manifestam a Igreja que vive nesse lugar, morada de Deus com os homens..."
+                            <cite>CIC n. 1180</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>Os nomes dados aos nossos espaços físicos definem suas finalidades de atendimento regional ou significados históricos:</p>
+                        <ul class="lista-explicativa">
+                            <li><strong>Comunidade e Capela:</strong> Células de atendimento em bairros locais menores.</li>
+                            <li><strong>Paróquia:</strong> Circunscrição liderada por um Pároco, contendo uma Igreja Matriz e capelas anexas.</li>
+                            <li><strong>Catedral:</strong> Igreja principal e central de toda a Diocese; onde fica a Cátedra (cadeira) espiritual do Bispo.</li>
+                            <li><strong>Santuário e Basílica:</strong> Igrejas que atraem grandes peregrinações ou possuem valor histórico extraordinário conferido pelo Papa.</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Estruturação Jurídica Territorial</h5>
+                                    <p>A Paróquia constitui unidade canônica governada estavelmente por um presbítero. A Catedral abriga a Cátedra litúrgica magisterial e de governo do Bispo (sendo única por Diocese). Santuários necessitam de aprovação canônica específica motivada pelo afluxo constante de fiéis.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>Graus de Basílicas</h5>
+                                    <p>Tópico honorífico. Existem apenas 4 Basílicas Maiores e situam-se em Roma (São Pedro, São João de Latrão, Santa Maria Maior e São Paulo Fora dos Muros). Igrejas insignes no mundo recebem a designação jurídica e litúrgica de Basílica Menor.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Minha Fala com os Jovens</span>
+                        <p>"Se eu falar para vocês: 'Vamos ali na igreja', de qual lugar estou falando? Pode ser de vários! Vamos entender o 'endereço' da fé. A Capela é aquele templo menor do bairro, onde a Comunidade local se reúne. Quando juntamos várias capelas de uma região sob os cuidados de um padre, temos uma Paróquia (e a igreja principal dela se chama Matriz). Agora, a igreja onde fica a cadeira oficial do Bispo da nossa cidade se chama Catedral — ela é a igreja mãe da nossa região. Se um lugar atrai milhares de romeiros por causa de uma grande devoção ou milagre, ele vira um Santuário (como o Santuário de Aparecida). E se o templo for gigante em história e beleza, o Papa dá o título de Basílica. Legal, né? Cada construção é uma casa de Deus adaptada para o tamanho da nossa caminhada."</p>
+                    </div>
+                </div>
+
+                <div class="card-topico">
+                    <h3>🔘 Tópico 3: A Voz da Igreja (Magistério e Documentos)</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Quem vos ouve, a mim ouve; e quem vos rejeita, a mim rejeita; e quem me rejeita, rejeita aquele que me enviou."
+                            <cite>Lucas 10, 16</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "O encargo de interpretar autenticamente a Palavra de Deus escrita ou contida na Tradição foi confiado só ao Magistério vivo da Igreja, cuja autoridade é exercida em nome de Jesus..."
+                            <cite>Dei Verbum, n. 10</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "O Magistério da Igreja empenha plenamente a autoridade recebida de Cristo quando define dogmas, isto é, quando propõe verdades contidas na Revelação divina."
+                            <cite>CIC n. 88</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Explicação Prática</h4>
+                        <p>A Igreja atua na orientação doutrinária emitindo cartas e manuais fundamentados no Evangelho para as discussões modernas. Documentos papais, as Cartas Encíclicas e o Catecismo são as ferramentas oficiais para se obter conhecimento seguro e evitar desinformações de redes sociais.</p>
+                        <a href="https://www.vatican.va" target="_blank" class="btn-vaticano">
+                            🌐 Acesse o Site Oficial do Vaticano
+                        </a>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>O Tripé Doutrinário</h5>
+                                    <p>A fé assenta-se na Sagrada Escritura (Revelação escrita), na Sagrada Tradição (transmissão oral e apostólica viva) e no Magistério (autoridade interpretativa). O Magistério serve à Palavra, impedindo a fragmentação interpretativa.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>Classificação dos Pronunciamentos</h5>
+                                    <p>Encíclicas abordam aprofundamentos morais, dogmáticos ou doutrina social. Exortações Apostólicas impulsionam práticas pastorais pós-sinodais. O Catecismo expõe de forma orgânica as quatro vertentes básicas: Profissão de fé, Liturgia/Sacramentos, Vida moral e Oração.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Se o Papa falar alguma coisa amanhã, onde vocês vão procurar para saber se é verdade? No TikTok? No Instagram de fofoca? Por favor, não! A mídia adora cortar as falas do Papa para criar polêmica. A Igreja é extremamente séria com o que ensina. Ela usa o Magistério, que é a voz oficial guiada pelo Espírito Santo. Tudo o que a gente crê está resumido num livrão chamado Catecismo da Igreja Católica. E quando o mundo muda e surgem dúvidas novas, o Papa escreve cartas oficiais chamadas Encíclicas. Quer saber o que a Igreja pensa de verdade sobre bioética, namoro, internet ou guerra? Entrem no site oficial: vatican.va. Lá tem o texto completo de tudo o que os Papas já escreveram. Ser católico inteligente é buscar a informação na fonte oficial!"</p>
+                    </div>
+                </div>
+
+                <div class="card-topico">
+                    <h3>🔘 Tópico 4: Igreja, a Maior Instituição de Caridade do Mundo</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Em verdade vos digo: cada vez que o fizestes a um desses meus irmãos mais pequeninos, a mim o fizestes."
+                            <cite>Mateus 25, 40</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "A Igreja nunca poderá ser dispensada de praticar a caridade como atividade organizada dos crentes..."
+                            <cite>Bento XVI, Deus Caritas Est, n. 29</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "As obras de misericórdia são as ações caridosas pelas quais socorremos o nosso próximo nas suas necessidades corporais e espirituais."
+                            <cite>CIC n. 2447</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Dados Estatísticos de Assistência Global</h4>
+                        <p>O cuidado com os necessitados não é filantropia secular, mas imperativo bíblico praticado em larga escala territorial:</p>
+                        
+                        <div class="grid-caridade">
+                            <div class="stat-box"><span class="stat-num">+5.000</span><span class="stat-desc">Hospitais Católicos administrados</span></div>
+                            <div class="stat-box"><span class="stat-num">+15.000</span><span class="stat-desc">Dispensários de Medicamentos</span></div>
+                            <div class="stat-box"><span class="stat-num">+15.000</span><span class="stat-desc">Casas de Idosos e Asilos</span></div>
+                            <div class="stat-box"><span class="stat-num">+10.000</span><span class="stat-desc">Orfanatos e Creches</span></div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Teologia do Cuidado Humanitário</h5>
+                                    <p>O desenvolvimento dos hospitais, redes de acolhimento e universidades universais operou-se historicamente pelas ordens religiosas medievais. A caridade fundamenta-se na identificação mística de Cristo no sofredor, estruturada mundialmente pela rede Cáritas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Vocês já devem ter ouvido na internet pessoas dizendo: 'Ah, a Igreja tem muito ouro no Vaticano, devia vender tudo para acabar com a fome no mundo'. Sabiam que isso é pura ignorância? Primeiro, que aquelas obras de arte pertencem à humanidade, não dá para vender o teto da Capela Sistina no Mercado Livre. Segundo, e mais importante: vocês sabiam que a Igreja Católica Apostólica Romana é a maior instituição de caridade do mundo inteiro? Nenhuma ONG, nenhum governo e nenhuma empresa ajuda mais pessoas do que a nossa Igreja. São milhares de hospitais católicos na África, leprosários, asilos, creches e orfanatos mantidos por freiras e padres que abriram mão de tudo para cuidar de quem o mundo joga no lixo. A Igreja não fala de amor apenas no altar; ela gasta bilhões de dólares e doa a vida de seus membros todos os dias para abraçar os mais pobres. Dá muito orgulho fazer parte disso!"</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="parte3" class="tab-content" role="tabpanel">
+            <h2 class="secao-titulo">O Chamado e o Papel do Crismando</h2>
+            <div class="grid-topicos">
+                
+                <div class="card-topico">
+                    <h3>🔘 Tópico 1: O Lugar do Jovem na Igreja (Defensores da Fé)</h3>
+                    
+                    <div class="bloco-tripe">
+                        <div class="fonte-box biblia">
+                            <strong>Texto Bíblico</strong>
+                            "Ninguém te despreze por seres jovem. Ao contrário, sê para os fiéis um modelo na palavra, na conduta, no amor, na fé, na pureza."
+                            <cite>1 Timóteo 4, 12</cite>
+                        </div>
+                        <div class="fonte-box magisterio">
+                            <strong>Documento da Igreja</strong>
+                            "Os jovens não devem ser considerados apenas como objeto da solicitude da Igreja; são, de fato... protagonistas da evangelização e artífices da renovação social."
+                            <cite>São João Paulo II, Christifideles Laici, n. 46</cite>
+                        </div>
+                        <div class="fonte-box catecismo">
+                            <strong>Catecismo da Igreja</strong>
+                            "Pelo sacramento da Confirmação, [os fiéis] são vinculados mais perfeitamente à Igreja, enriquecidos com uma força especial do Espírito Santo..."
+                            <cite>CIC n. 1285</cite>
+                        </div>
+                    </div>
+
+                    <div class="texto-bloco">
+                        <h4>Maturidade Espiritual e Envolvimento</h4>
+                        <p>O sacramento da Confirmação afasta o jovem da condição de mero assistente e confere o caráter de maturidade na fé, impulsionando ações concretas no serviço paroquial:</p>
+                        <ul class="lista-explicativa">
+                            <li><strong>Atuação Litúrgica:</strong> Serviços de acolhida, coroinhas, leitores e ministérios de música.</li>
+                            <li><strong>Apostolado Social:</strong> Assistência a vicentinos, catequese paroquial infantil e missões em comunidades.</li>
+                            <li><strong>Testemunho Secundário:</strong> Postura de firmeza doutrinária em ambientes de estudo, acadêmicos e digitais.</li>
+                        </ul>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            📚 Aprofundamento sobre o Tema
+                            <svg class="accordion-icon" width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.171 9.172 9.171-9.172 2.829 2.83-12 12z"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="inner-pad">
+                                <div class="subtopico-estudo">
+                                    <h5>Teologia do Caráter Confirmatório</h5>
+                                    <p>O Batismo gera para a graça; a Crisma confere o robustecimento e a armadura espiritual. Antigamente denominados "Soldados de Cristo", os crismados recebem a efusão do Espírito Santo direcionada à defesa externa do Evangelho frente ao relativismo.</p>
+                                </div>
+                                <div class="subtopico-estudo">
+                                    <h5>O "Agora" de Deus</h5>
+                                    <p>Conforme os ensinamentos papais modernos da Exortação Christus Vivit, o jovem assume responsabilidades eclesiais ativas e imediatas e não em um tempo futuro remoto, exercendo seu papel profético batismal.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fala-crismando">
+                        <span>Resumo do Tópico</span>
+                        <p>"Galera, chegamos ao ponto mais importante de todo o nosso encontro. Nós vimos o que é a Igreja Católica Apostólica Romana, quem a fundou, como ela se organiza e o bem gigantesco que ela faz no mundo. Agora eu te pergunto: onde é que você entra nessa história? Tem muito jovem que acha que a Crisma é uma 'formatura': você pega o diploma, tira foto bonita com o padrinho e nunca mais pisa na missa. Se você pensa assim, você não entendeu nada sobre o Espírito Santo! A Crisma não é o fim, é o começo. No Batismo, seus pais escolheram a fé por você. Na Crisma, o Bispo vai ungir a sua testa e o próprio Deus vai te perguntar: 'Você aceita fazer parte do Meu exército?'. A Igreja precisa da força de vocês, da criatividade de vocês, da alegria de vocês. Ser crismado significa deixar de ser aquela pessoa que só vem assistir à missa de braços cruzados e passar a ser quem faz as coisas acontecerem. A Igreja precisa de jovens que assumam o grupo de jovens, que cantem, que ajudem na liturgia, que levem comida para os moradores de rua. E, mais do que isso: o mundo lá fora está cheio de fake news sobre a nossa fé, e a Igreja precisa que você seja o cara que estuda, que conhece o Catecismo e que defende a Igreja na rodinha de amigos da escola, na faculdade ou nos comentários da internet, sem vergonha de ser católico. Jesus e a Igreja contam com você. Você está pronto para deixar de ser um banco de igreja e passar a ser a própria Igreja viva no mundo?"</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Material Catequetico sobre a Igreja Católica Apostólica Romana</p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: var(--texto-mutado);">
+            <span>Feito por:</span> Geovane Augusto :)
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Controle de Alternância de Abas ---
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.getAttribute('data-target');
+
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // --- Controle de Sanfonas (Accordions) ---
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    
+                    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                        content.style.maxHeight = '0px';
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        // Fecha outros accordions da mesma aba se desejar (opcional)
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
